@@ -5,11 +5,24 @@ package router
  * @date 2020-02-22 18:18
  */
 
-import "github.com/gin-gonic/gin"
+import (
+	_ "github.com/detectiveHLH/go-backend-starter/docs"
+	"github.com/detectiveHLH/go-backend-starter/middleware/jwt"
+	"github.com/gin-gonic/gin"
+	"github.com/swaggo/gin-swagger"
+	"github.com/swaggo/gin-swagger/swaggerFiles"
+)
+
 
 func InitRouter() *gin.Engine {
 	router := gin.New()
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	router.GET("/login", Login)
+
+
 	apiVersionOne := router.Group("/api/v1/")
+	apiVersionOne.Use(jwt.Jwt())
+
 	apiVersionOne.GET("hello1", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"success": true,

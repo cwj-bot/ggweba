@@ -7,17 +7,23 @@ package main
 
 import (
     "fmt"
-    _ "github.com/gin-gonic/gin"
     "project2/router"
-    "rsc.io/quote"
 )
 
 func main() {
-    fmt.Println("This works")
+    fmt.Println("start server ...")
     r := router.InitRouter()
     _ = r.Run()
+    //address := fmt.Sprintf("%s:%s", setting.ServerSetting.Ip, setting.ServerSetting.Port)
+    //server := endless.NewServer(address, r)
+    //server.BeforeBegin = func(add string) {
+    //    log.Printf("Actual pid is %d", syscall.Getpid())
+    //}
+    //
+    //err := server.ListenAndServe()
+    //if err != nil {
+    //    log.Printf("Server err: %v", err)
+    //}
 }
 
-func Hello() string {
-    return quote.Hello()
-}
+
